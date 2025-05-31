@@ -5,9 +5,9 @@
     - create.gql
     - match.gql
 - src 
-    - myGQLlex.mll
-    - myGQlparse.mly
-    - myGQLloop.ml
+    - myGQLlex.mll      : lexeur
+    - myGQlparse.mly    : parseur
+    - myGQLloop.ml  
     - myGQLast.ml
     - myGQLsem.ml
     - myGQLdomain.ml
