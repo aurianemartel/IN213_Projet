@@ -27,11 +27,11 @@ let main() =
   while true do
     try
       let _ = Printf.printf  "> %!" in
-      let e = MyGQLparse.main MyGQLlex.lex lexbuf in
+      let i = MyGQLparse.main MyGQLlex.lex lexbuf in
       let _ = Printf.printf "Recognized: " in
-      let _ = MyGQLast.print stdout e in
-(*    let _ = Printf.fprintf stdout " =\n%!" in
-      let _ = MyGQLsem.printval (MyGQLsem.eval e) in *)
+      let _ = MyGQLast.print stdout i in
+      let _ = Printf.fprintf stdout " =\n%!" in
+      let _ = MyGQLsem.printvals (MyGQLsem.eval_init i) in
       Printf.printf "\n%!"
     with
       MyGQLlex.Eoi -> Printf.printf  "Bye bye.\n%!" ; exit 0

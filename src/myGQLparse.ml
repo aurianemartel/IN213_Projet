@@ -58,65 +58,67 @@ let yytransl_block = [|
     0|]
 
 let yylhs = "\255\255\
-\001\000\002\000\002\000\003\000\003\000\005\000\004\000\004\000\
-\006\000\007\000\008\000\008\000\009\000\009\000\011\000\011\000\
-\010\000\010\000\012\000\012\000\013\000\013\000\013\000\013\000\
-\000\000"
+\001\000\002\000\002\000\003\000\003\000\005\000\005\000\005\000\
+\005\000\005\000\004\000\004\000\006\000\007\000\008\000\008\000\
+\009\000\009\000\011\000\011\000\010\000\010\000\012\000\012\000\
+\013\000\000\000"
 
 let yylen = "\002\000\
 \002\000\002\000\003\000\001\000\001\000\001\000\001\000\001\000\
-\005\000\007\000\000\000\001\000\000\000\003\000\000\000\002\000\
-\000\000\003\000\001\000\003\000\003\000\003\000\003\000\003\000\
-\002\000"
+\001\000\001\000\001\000\001\000\005\000\007\000\000\000\001\000\
+\000\000\003\000\000\000\002\000\000\000\003\000\001\000\003\000\
+\003\000\002\000"
 
 let yydefred = "\000\000\
-\000\000\000\000\000\000\025\000\000\000\006\000\000\000\000\000\
-\004\000\005\000\000\000\008\000\001\000\012\000\000\000\003\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\014\000\000\000\000\000\000\000\009\000\016\000\000\000\
-\000\000\018\000\000\000\000\000\021\000\023\000\024\000\022\000\
-\020\000\010\000"
+\000\000\000\000\000\000\026\000\000\000\006\000\010\000\007\000\
+\008\000\009\000\000\000\000\000\004\000\005\000\000\000\012\000\
+\001\000\016\000\000\000\003\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\018\000\000\000\000\000\
+\000\000\013\000\020\000\000\000\000\000\022\000\000\000\000\000\
+\025\000\024\000\014\000"
 
 let yydgoto = "\002\000\
-\004\000\005\000\008\000\009\000\010\000\011\000\012\000\015\000\
-\019\000\023\000\025\000\028\000\029\000"
+\004\000\005\000\012\000\013\000\014\000\015\000\016\000\019\000\
+\023\000\027\000\029\000\032\000\033\000"
 
-let yysindex = "\003\000\
-\002\255\000\000\003\255\000\000\000\255\000\000\016\255\002\255\
-\000\000\000\000\009\255\000\000\000\000\000\000\011\255\000\000\
-\016\255\022\255\017\255\014\255\011\255\025\255\020\255\027\255\
-\017\255\000\000\019\255\021\255\023\255\000\000\000\000\018\255\
-\010\255\000\000\025\255\028\255\000\000\000\000\000\000\000\000\
-\000\000\000\000"
+let yysindex = "\009\000\
+\017\255\000\000\255\254\000\000\014\255\000\000\000\000\000\000\
+\000\000\000\000\023\255\017\255\000\000\000\000\016\255\000\000\
+\000\000\000\000\018\255\000\000\023\255\025\255\019\255\020\255\
+\018\255\030\255\026\255\031\255\019\255\000\000\024\255\027\255\
+\028\255\000\000\000\000\021\255\015\255\000\000\030\255\032\255\
+\000\000\000\000\000\000"
 
 let yyrindex = "\000\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\008\255\026\255\
-\000\000\000\000\251\254\000\000\000\000\000\000\012\255\000\000\
-\247\254\000\000\024\255\250\254\012\255\000\000\000\000\000\000\
-\029\255\000\000\000\000\000\000\030\255\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000"
+\000\000\000\000\013\255\033\255\000\000\000\000\002\255\000\000\
+\000\000\000\000\004\255\000\000\252\254\000\000\034\255\000\255\
+\004\255\000\000\000\000\000\000\029\255\000\000\000\000\000\000\
+\036\255\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000"
 
 let yygindex = "\000\000\
-\000\000\026\000\000\000\000\000\000\000\001\000\000\000\022\000\
-\020\000\017\000\000\000\008\000\000\000"
+\000\000\026\000\000\000\000\000\003\000\007\000\000\000\022\000\
+\023\000\020\000\000\000\011\000\000\000"
 
-let yytablesize = 44
-let yytable = "\011\000\
-\007\000\011\000\015\000\001\000\006\000\011\000\007\000\003\000\
-\015\000\007\000\037\000\013\000\038\000\039\000\040\000\011\000\
-\011\000\014\000\011\000\013\000\013\000\018\000\017\000\021\000\
-\024\000\022\000\027\000\030\000\031\000\033\000\034\000\017\000\
-\036\000\016\000\007\000\035\000\042\000\002\000\020\000\019\000\
-\026\000\032\000\041\000\017\000"
+let yytablesize = 50
+let yytable = "\006\000\
+\007\000\008\000\009\000\010\000\015\000\011\000\015\000\011\000\
+\019\000\001\000\015\000\017\000\017\000\011\000\019\000\006\000\
+\007\000\008\000\009\000\010\000\015\000\015\000\003\000\015\000\
+\018\000\017\000\025\000\026\000\022\000\021\000\028\000\031\000\
+\035\000\034\000\037\000\040\000\038\000\020\000\011\000\041\000\
+\039\000\021\000\024\000\021\000\002\000\023\000\043\000\030\000\
+\036\000\042\000"
 
-let yycheck = "\009\001\
-\006\001\011\001\009\001\001\000\002\001\015\001\012\001\006\001\
-\015\001\007\001\001\001\012\001\003\001\004\001\005\001\008\001\
-\009\001\002\001\011\001\008\001\009\001\011\001\014\001\002\001\
-\011\001\009\001\002\001\008\001\002\001\011\001\010\001\008\001\
-\015\001\008\000\007\001\013\001\036\000\012\001\017\000\010\001\
-\021\000\025\000\035\000\015\001"
+let yycheck = "\001\001\
+\002\001\003\001\004\001\005\001\009\001\007\001\011\001\006\001\
+\009\001\001\000\015\001\008\001\009\001\012\001\015\001\001\001\
+\002\001\003\001\004\001\005\001\008\001\009\001\006\001\011\001\
+\002\001\012\001\002\001\009\001\011\001\014\001\011\001\002\001\
+\002\001\008\001\011\001\015\001\010\001\012\000\007\001\037\000\
+\013\001\008\001\021\000\015\001\012\001\010\001\040\000\025\000\
+\029\000\039\000"
 
 let yynames_const = "\
   TRUE\000\
@@ -146,7 +148,7 @@ let yyact = [|
     Obj.repr(
 # 32 "myGQLparse.mly"
                       ( _1 )
-# 150 "myGQLparse.ml"
+# 152 "myGQLparse.ml"
                : MyGQLast.command list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : string) in
@@ -154,7 +156,7 @@ let yyact = [|
     Obj.repr(
 # 36 "myGQLparse.mly"
                ( [ECommand(_1, _2)] )
-# 158 "myGQLparse.ml"
+# 160 "myGQLparse.ml"
                : 'instr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : string) in
@@ -163,51 +165,77 @@ let yyact = [|
     Obj.repr(
 # 37 "myGQLparse.mly"
                      ( ECommand(_1, _2)::_3 )
-# 167 "myGQLparse.ml"
+# 169 "myGQLparse.ml"
                : 'instr))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'entity) in
     Obj.repr(
 # 41 "myGQLparse.mly"
          ( _1 )
-# 174 "myGQLparse.ml"
+# 176 "myGQLparse.ml"
                : 'expr))
 ; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 0 : 'variable) in
+    let _1 = (Parsing.peek_val __caml_parser_env 0 : 'atom) in
     Obj.repr(
 # 42 "myGQLparse.mly"
-           ( _1 )
-# 181 "myGQLparse.ml"
+       ( _1 )
+# 183 "myGQLparse.ml"
                : 'expr))
+; (fun __caml_parser_env ->
+    let _1 = (Parsing.peek_val __caml_parser_env 0 : int) in
+    Obj.repr(
+# 46 "myGQLparse.mly"
+                 ( EInt (_1) )
+# 190 "myGQLparse.ml"
+               : 'atom))
+; (fun __caml_parser_env ->
+    Obj.repr(
+# 47 "myGQLparse.mly"
+                 ( EBool (true) )
+# 196 "myGQLparse.ml"
+               : 'atom))
+; (fun __caml_parser_env ->
+    Obj.repr(
+# 48 "myGQLparse.mly"
+                 ( EBool (false) )
+# 202 "myGQLparse.ml"
+               : 'atom))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 46 "myGQLparse.mly"
-        ( EIdent(_1) )
-# 188 "myGQLparse.ml"
-               : 'variable))
+# 49 "myGQLparse.mly"
+                 ( EString (_1) )
+# 209 "myGQLparse.ml"
+               : 'atom))
+; (fun __caml_parser_env ->
+    let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
+    Obj.repr(
+# 50 "myGQLparse.mly"
+                 ( EIdent (_1) )
+# 216 "myGQLparse.ml"
+               : 'atom))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'node) in
     Obj.repr(
-# 50 "myGQLparse.mly"
+# 54 "myGQLparse.mly"
                 ( _1 )
-# 195 "myGQLparse.ml"
+# 223 "myGQLparse.ml"
                : 'entity))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'relationship) in
     Obj.repr(
-# 51 "myGQLparse.mly"
+# 55 "myGQLparse.mly"
                 ( _1 )
-# 202 "myGQLparse.ml"
+# 230 "myGQLparse.ml"
                : 'entity))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 3 : 'opt_ident) in
     let _3 = (Parsing.peek_val __caml_parser_env 2 : 'opt_labels) in
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'opt_props) in
     Obj.repr(
-# 55 "myGQLparse.mly"
+# 59 "myGQLparse.mly"
                                            ( ENode(_2, _3, _4) )
-# 211 "myGQLparse.ml"
+# 239 "myGQLparse.ml"
                : 'node))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 6 : 'node) in
@@ -216,107 +244,85 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 2 : 'opt_props) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'node) in
     Obj.repr(
-# 59 "myGQLparse.mly"
+# 63 "myGQLparse.mly"
                                                                  ( ERel(_3, _4, _5, _1, _7))
-# 222 "myGQLparse.ml"
+# 250 "myGQLparse.ml"
                : 'relationship))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 63 "myGQLparse.mly"
+# 67 "myGQLparse.mly"
   ( None )
-# 228 "myGQLparse.ml"
+# 256 "myGQLparse.ml"
                : 'opt_ident))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 64 "myGQLparse.mly"
+# 68 "myGQLparse.mly"
         ( Some _1 )
-# 235 "myGQLparse.ml"
+# 263 "myGQLparse.ml"
                : 'opt_ident))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 68 "myGQLparse.mly"
+# 72 "myGQLparse.mly"
   ( [] )
-# 241 "myGQLparse.ml"
+# 269 "myGQLparse.ml"
                : 'opt_labels))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : string) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'opt_labels) in
     Obj.repr(
-# 69 "myGQLparse.mly"
+# 73 "myGQLparse.mly"
                          ( _2 :: _3 )
-# 249 "myGQLparse.ml"
+# 277 "myGQLparse.ml"
                : 'opt_labels))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 73 "myGQLparse.mly"
+# 77 "myGQLparse.mly"
   ( None )
-# 255 "myGQLparse.ml"
+# 283 "myGQLparse.ml"
                : 'opt_rtype))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 74 "myGQLparse.mly"
+# 78 "myGQLparse.mly"
               ( Some _2 )
-# 262 "myGQLparse.ml"
+# 290 "myGQLparse.ml"
                : 'opt_rtype))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 79 "myGQLparse.mly"
+# 83 "myGQLparse.mly"
   ( [] )
-# 268 "myGQLparse.ml"
+# 296 "myGQLparse.ml"
                : 'opt_props))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'props) in
     Obj.repr(
-# 80 "myGQLparse.mly"
+# 84 "myGQLparse.mly"
                        ( _2 )
-# 275 "myGQLparse.ml"
+# 303 "myGQLparse.ml"
                : 'opt_props))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : 'property) in
     Obj.repr(
-# 84 "myGQLparse.mly"
+# 88 "myGQLparse.mly"
                         ( [_1] )
-# 282 "myGQLparse.ml"
+# 310 "myGQLparse.ml"
                : 'props))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : 'property) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'props) in
     Obj.repr(
-# 85 "myGQLparse.mly"
+# 89 "myGQLparse.mly"
                         ( _1 :: _3 )
-# 290 "myGQLparse.ml"
+# 318 "myGQLparse.ml"
                : 'props))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 2 : string) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : int) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'atom) in
     Obj.repr(
-# 89 "myGQLparse.mly"
-                        ( (_1, EInt(_3)) )
-# 298 "myGQLparse.ml"
-               : 'property))
-; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 2 : string) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : string) in
-    Obj.repr(
-# 90 "myGQLparse.mly"
-                        ( (_1, EString(_3)) )
-# 306 "myGQLparse.ml"
-               : 'property))
-; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 2 : string) in
-    Obj.repr(
-# 91 "myGQLparse.mly"
-                        ( (_1, EBool(true)) )
-# 313 "myGQLparse.ml"
-               : 'property))
-; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 2 : string) in
-    Obj.repr(
-# 92 "myGQLparse.mly"
-                        ( (_1, EBool(false)) )
-# 320 "myGQLparse.ml"
+# 93 "myGQLparse.mly"
+                   ( (_1, _3) )
+# 326 "myGQLparse.ml"
                : 'property))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))

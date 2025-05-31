@@ -1,0 +1,5 @@
+RETURN 1;
+
+RETURN "Hello world !";
+
+RETURN true;

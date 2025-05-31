@@ -1,14 +1,15 @@
-CAMLC=$(BINDIR)ocamlc
+# CAMLC=$(BINDIR)ocamlc
+CAMLC=ocamlfind ocamlc
 CAMLDEP=$(BINDIR)ocamldep
 CAMLLEX=$(BINDIR)ocamllex
 CAMLYACC=$(BINDIR)ocamlyacc
 # COMPFLAGS=-w A-4-6-9 -warn-error A -g
-COMPFLAGS=
+COMPFLAGS=-package ocamlgraph
 
 EXEC = myGQLloop
 
 # Fichiers compilés, à produire pour fabriquer l'exécutable
-SOURCES = myGQLast.ml myGQLloop.ml
+SOURCES = myGQLast.ml myGQLdomain.ml myGQLsem.ml myGQLloop.ml
 GENERATED = myGQLlex.ml myGQLparse.ml myGQLparse.mli
 MLIS =
 OBJS = $(GENERATED:.ml=.cmo) $(SOURCES:.ml=.cmo)
@@ -17,7 +18,7 @@ OBJS = $(GENERATED:.ml=.cmo) $(SOURCES:.ml=.cmo)
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CAMLC) $(COMPFLAGS) $(OBJS) -o $(EXEC)
+	$(CAMLC) $(COMPFLAGS) $(OBJS) -o $(EXEC) -linkpkg
 
 .SUFFIXES:
 .SUFFIXES: .ml .mli .cmo .cmi .cmx

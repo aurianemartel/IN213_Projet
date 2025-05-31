@@ -39,11 +39,15 @@ instr:
 
 expr:
 | entity { $1 }
-| variable { $1 }
+| atom { $1 }
 ;
 
-variable:
-| IDENT { EIdent($1) }
+atom:
+| INT            { EInt ($1) }
+| TRUE           { EBool (true) }
+| FALSE          { EBool (false) }
+| STRING         { EString ($1) }
+| IDENT          { EIdent ($1) }
 ;
 
 entity:
@@ -86,9 +90,6 @@ props:
 ;
 
 property:
-  | IDENT COLON INT     { ($1, EInt($3)) }
-  | IDENT COLON STRING  { ($1, EString($3)) }
-  | IDENT COLON TRUE    { ($1, EBool(true)) }
-  | IDENT COLON FALSE   { ($1, EBool(false)) }
+| IDENT COLON atom { ($1, $3) }
 ;
 
