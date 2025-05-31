@@ -26,6 +26,7 @@ let rec  print_expr oc = function
       (fun oc -> List.iter (fun s -> match s with
         |k, EInt v -> Printf.fprintf oc " %s:%d" k v
         |k, EString v -> Printf.fprintf oc " %s:%s" k v
+        |k, EBool v -> Printf.fprintf oc " %s:%b" k v
         |_  -> raise(Failure "Bad property type"))) props
     )
   | ERel (name, rtype, props, node1, node2) -> (

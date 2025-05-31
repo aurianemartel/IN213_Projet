@@ -1,5 +1,7 @@
-CREATE (nom);
+CREATE (Alice);
 
-CREATE (nom:LABEL);
+CREATE (Bob:PERSONNE:GEEK);
 
-CREATE ({name:"Nom", annee:2025});
+CREATE (Alice {nom:"Alice", annee_naissance:2000});
+
+CREATE ({name:"Bob", annee_naissance:1990});
