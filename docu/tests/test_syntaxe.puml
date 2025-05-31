@@ -1,0 +1,64 @@
+@startuml
+
+' Représente une phrase complète
+class Phrase {
+  +List<Instruction> instructions
+}
+
+' Instruction générique
+abstract class Instruction
+
+' Deux types d'instructions
+class Declaration {
+  +string nom
+  +Expression valeur
+}
+class Affectation {
+  +string variable
+  +Expression valeur
+}
+class Condition {
+  +Expression test
+  +List<Instruction> alors
+  +List<Instruction> sinon
+}
+
+' Expression générique
+abstract class Expression
+
+' Différents types d'expressions
+class Literal {
+  +any valeur
+}
+class VariableRef {
+  +string nom
+}
+class Binaire {
+  +Expression gauche
+  +string operateur
+  +Expression droite
+}
+class AppelFonction {
+  +string nom
+  +List<Expression> arguments
+}
+
+' Héritage
+Instruction <|-- Declaration
+Instruction <|-- Affectation
+Instruction <|-- Condition
+
+Expression <|-- Literal
+Expression <|-- VariableRef
+Expression <|-- Binaire
+Expression <|-- AppelFonction
+
+Phrase "1" *-- "0..*" Instruction : contient
+Condition o-- "1" Expression : test
+Binaire o-- "1" Expression : gauche
+Binaire o-- "1" Expression : droite
+Declaration o-- Expression : valeur
+Affectation o-- Expression : valeur
+AppelFonction o-- "*" Expression : arguments
+
+@enduml

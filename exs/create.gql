@@ -1,0 +1,5 @@
+CREATE (nom);
+
+CREATE (nom:LABEL);
+
+CREATE ({name:"Nom", annee:2025});

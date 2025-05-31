@@ -1,0 +1,88 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+
+' Légende visuelle
+legend right
+| Couleur      | État        | Emoji |
+|--------------|-------------|-------|
+| Vert         | Terminé     | ✔️     |
+| Jaune        | En cours    | 🔧     |
+| Orange       | À faire     | 🕒     |
+| Bleu clair   | Idée/option | 💡     |
+
+| Priorité     | Description        |
+|--------------|--------------------|
+| P1           | Essentiel          |
+| P2           | Important          |
+| P3           | Amélioration       |
+endlegend
+
+' Composants avec état
+component "Lexer\n✔️ Terminé" as Lexer #lightgreen
+component "Parser\n🔧 En cours" as Parser #gold
+component "AST Builder\n🕒 À faire" as AST #orange
+component "Tests\n✔️ Terminé" as Tests #lightgreen
+component "Documentation\n🔧 En cours" as Doc #gold
+component "Exemples\n🕒 À faire" as Examples #orange
+component "Améliorations\n💡 Idées" as Ideas #lightblue
+component "Interface CLI\n🕒 À faire" as CLI #orange
+
+' Notes avec sous-tâches et priorités
+note right of Lexer
+* P1 - Mots-clés ✔️
+* P1 - Identifiants ✔️
+* P1 - Nombres ✔️
+* P2 - Chaînes 🕒
+end note
+
+note right of Parser
+* P1 - Expressions ✔️
+* P1 - Conditions if 🔧
+* P2 - Fonctions 🕒
+* P3 - Erreurs syntaxiques 💡
+end note
+
+note right of AST
+* P1 - Expression nodes 🕒
+* P1 - Statement nodes 🕒
+* P2 - Tree serialization 💡
+end note
+
+note bottom of Doc
+* P1 - Syntaxe de base ✔️
+* P2 - Exemples 🔧
+* P3 - Export Markdown 💡
+end note
+
+note right of Examples
+* P1 - Script simple 🕒
+* P2 - If/else 🕒
+* P3 - Fonctions récursives 💡
+end note
+
+note right of Ideas
+* Refactor lexer (P3)
+* Parsing simplifié (P2)
+* Générateur d’AST graphique (P3)
+end note
+
+note bottom of CLI
+* P1 - Lancer un fichier 🕒
+* P2 - Mode debug 🕒
+* P3 - Options ligne de commande 💡
+end note
+
+' Dépendances entre modules
+Lexer --> Parser : tokens
+Parser --> AST : syntax tree
+AST --> Tests : évaluation
+Parser --> Tests
+AST --> Doc
+Doc --> Examples
+Examples --> CLI
+Ideas ..> Lexer : refactor ?
+Ideas ..> Parser : simplification ?
+Ideas ..> AST : génération graphique
+
+@enduml

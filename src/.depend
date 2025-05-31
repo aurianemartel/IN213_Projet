@@ -1,0 +1,22 @@
+myGQLast.cmo :
+myGQLast.cmx :
+myGQLlex.cmo : \
+    myGQLparse.cmi
+myGQLlex.cmx : \
+    myGQLparse.cmx
+myGQLloop.cmo : \
+    myGQLparse.cmi \
+    myGQLlex.cmo \
+    myGQLast.cmo
+myGQLloop.cmx : \
+    myGQLparse.cmx \
+    myGQLlex.cmx \
+    myGQLast.cmx
+myGQLparse.cmo : \
+    myGQLast.cmo \
+    myGQLparse.cmi
+myGQLparse.cmx : \
+    myGQLast.cmx \
+    myGQLparse.cmi
+myGQLparse.cmi : \
+    myGQLast.cmo

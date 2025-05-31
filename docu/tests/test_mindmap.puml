@@ -1,0 +1,34 @@
+@startmindmap
+* Langage perso
+** Lexer ✔️
+*** P1 Mots-clés ✔️
+*** P1 Identifiants ✔️
+*** P1 Nombres ✔️
+*** P2 Chaînes 🕒
+** Parser 🔧
+*** P1 Expressions ✔️
+*** P1 Conditions if 🔧
+*** P2 Fonctions 🕒
+*** P3 Erreurs syntaxiques 💡
+** AST 🕒
+*** P1 Expression nodes 🕒
+*** P1 Statement nodes 🕒
+*** P2 Tree serialization 💡
+** Documentation 🔧
+*** P1 Syntaxe de base ✔️
+*** P2 Exemples 🔧
+*** P3 Export Markdown 💡
+** Exemples 🕒
+*** P1 Script simple 🕒
+*** P2 If/else 🕒
+*** P3 Fonctions récursives 💡
+** Interface CLI 🕒
+*** P1 Lancer un fichier 🕒
+*** P2 Mode debug 🕒
+*** P3 Options CLI 💡
+** Tests ✔️
+** Améliorations 💡
+*** Refactor Lexer (P3)
+*** Parser simplifié (P2)
+*** Générateur AST graphique (P3)
+@endmindmap

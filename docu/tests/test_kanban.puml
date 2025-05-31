@@ -1,0 +1,37 @@
+@startuml
+' Simule un tableau Kanban avec des packages comme colonnes
+skinparam packageStyle rectangle
+
+package "🕒 À faire" {
+  class "Lexer : chaînes (P2)"
+  class "Parser : fonctions (P2)"
+  class "AST : expression nodes (P1)"
+  class "AST : statement nodes (P1)"
+  class "Exemples : script simple (P1)"
+  class "CLI : exécution fichier (P1)"
+  class "CLI : mode debug (P2)"
+}
+
+package "🔧 En cours" {
+  class "Parser : if/else (P1)"
+  class "Doc : exemples (P2)"
+}
+
+package "✔️ Terminé" {
+  class "Lexer : mots-clés (P1)"
+  class "Lexer : identifiants (P1)"
+  class "Lexer : nombres (P1)"
+  class "Parser : expressions (P1)"
+  class "Doc : syntaxe de base (P1)"
+  class "Tests unitaires"
+}
+
+package "💡 Idées / P3" {
+  class "Parser : gestion erreurs"
+  class "Refactor Lexer"
+  class "Export AST graphique"
+  class "Doc : export Markdown"
+  class "Exemples : récursion"
+  class "CLI : options"
+}
+@enduml

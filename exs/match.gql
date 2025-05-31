@@ -1,0 +1,6 @@
+MATCH (n:PERSON)-[:IS_FRIEND_WITH]->(:PERSON {nom:"Alice"});
+RETURN n;
+
+
+MATCH (n:PERSON)-[:IS_FRIEND_WITH]->(:PERSON {nom:"Alice"})
+RETURN n;
