@@ -1,4 +1,5 @@
 type expr =
+  | EUnit
   | EInt of int
   | EBool of bool
   | EString of string
@@ -12,6 +13,7 @@ type command =
 
 
 let rec  print_expr oc = function
+  | EUnit -> ()
   | EInt n -> Printf.fprintf oc "%d" n
   | EBool b -> Printf.fprintf oc "%s" (if b then "true" else "false")
   | EIdent s -> Printf.fprintf oc "%s" s

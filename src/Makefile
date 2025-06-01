@@ -9,7 +9,7 @@ COMPFLAGS=-package ocamlgraph
 EXEC = myGQLloop
 
 # Fichiers compilés, à produire pour fabriquer l'exécutable
-SOURCES = myGQLast.ml myGQLdomain.ml myGQLsem.ml myGQLloop.ml
+SOURCES = myGQLast.ml myGQLval.ml myGQLdomain.ml myGQLsem.ml myGQLloop.ml
 GENERATED = myGQLlex.ml myGQLparse.ml myGQLparse.mli
 MLIS =
 OBJS = $(GENERATED:.ml=.cmo) $(SOURCES:.ml=.cmo)

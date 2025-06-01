@@ -5,3 +5,6 @@ CREATE (Bob:PERSONNE:GEEK);
 CREATE (Alice {nom:"Alice", annee_naissance:2000});
 
 CREATE ({name:"Bob", annee_naissance:1990});
+
+
+DUMP;

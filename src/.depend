@@ -1,17 +1,21 @@
 myGQLast.cmo :
 myGQLast.cmx :
-myGQLdomain.cmo :
-myGQLdomain.cmx :
+myGQLdomain.cmo : \
+    myGQLval.cmo
+myGQLdomain.cmx : \
+    myGQLval.cmx
 myGQLlex.cmo : \
     myGQLparse.cmi
 myGQLlex.cmx : \
     myGQLparse.cmx
 myGQLloop.cmo : \
+    myGQLval.cmo \
     myGQLsem.cmo \
     myGQLparse.cmi \
     myGQLlex.cmo \
     myGQLast.cmo
 myGQLloop.cmx : \
+    myGQLval.cmx \
     myGQLsem.cmx \
     myGQLparse.cmx \
     myGQLlex.cmx \
@@ -25,8 +29,12 @@ myGQLparse.cmx : \
 myGQLparse.cmi : \
     myGQLast.cmo
 myGQLsem.cmo : \
+    myGQLval.cmo \
     myGQLdomain.cmo \
     myGQLast.cmo
 myGQLsem.cmx : \
+    myGQLval.cmx \
     myGQLdomain.cmx \
     myGQLast.cmx
+myGQLval.cmo :
+myGQLval.cmx :

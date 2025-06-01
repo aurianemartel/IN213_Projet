@@ -33,8 +33,9 @@ main: instr SEMICOLON { $1 }
 ;
 
 instr:
-| COMMAND expr { [ECommand($1, $2)] }
-| COMMAND expr instr { ECommand($1, $2)::$3 }
+| COMMAND             { [ECommand($1, EUnit)] }
+| COMMAND expr        { [ECommand($1, $2)] }
+| COMMAND expr instr  { ECommand($1, $2)::$3 }
 ;
 
 expr:

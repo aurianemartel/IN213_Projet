@@ -31,7 +31,7 @@ let main() =
       let _ = Printf.printf "Recognized: " in
       let _ = MyGQLast.print stdout i in
       let _ = Printf.fprintf stdout " =\n%!" in
-      let _ = MyGQLsem.printvals (MyGQLsem.eval_init i) in
+      let _ = MyGQLval.printvals (MyGQLsem.eval_init i) in
       Printf.printf "\n%!"
     with
       MyGQLlex.Eoi -> Printf.printf  "Bye bye.\n%!" ; exit 0

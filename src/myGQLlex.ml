@@ -197,7 +197,7 @@ let
       ( match lxm with
         | "true" -> TRUE
         | "false" -> FALSE 
-        | "MATCH" | "RETURN" | "CREATE" -> COMMAND(lxm)
+        | "MATCH" | "RETURN" | "CREATE" | "DUMP" -> COMMAND(lxm)
         | _ -> IDENT(lxm) )
 # 203 "myGQLlex.ml"
 

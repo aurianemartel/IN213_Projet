@@ -1,15 +1,13 @@
 module G = Graph.Imperative.Digraph.Concrete(String)
 
-type property_value = PInt of int | PString of string | PBool of bool
-
 type node_info = { 
   label_list : string list; 
-  prop_list : (string*property_value) list
+  prop_list : (string*MyGQLval.myGQLval) list
 }
 
 type rel_info = { 
   rel_type : string; 
-  prop_list : (string*property_value) list 
+  prop_list : (string*MyGQLval.myGQLval) list 
 }
 
 type full_graph = { 
@@ -37,3 +35,17 @@ let create_edge graph edge_table node1 node2 relationship_type propetries =
   let info_table = { rel_type = relationship_type; prop_list = propetries } in
   Hashtbl.add edge_table (node1, node2) info_table;
   G.add_edge graph node1 node2;;
+
+
+(* val fold_vertex : (vertex -> 'a -> 'a) -> t -> 'a -> 'a *)
+
+let get_node_list full_graph = G.fold_vertex 
+  (fun v l -> 
+    let info_table = Hashtbl.find full_graph.node_table v in
+    let labels = info_table.label_list
+    and properties = info_table.prop_list in 
+    MyGQLval.Nodeval(v, labels, properties)::l
+  ) 
+  full_graph.graph_structure [];;
+
+let get_edge_list graph = [];;
