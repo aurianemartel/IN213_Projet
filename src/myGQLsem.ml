@@ -21,31 +21,42 @@ let eval_dump () =
 ;;
 
 let eval_match entity rho = match entity with
-  | ENode( name, labels, props ) -> (match name with
+  | ENode( name, labels, _ ) -> (match name with
     | None -> rho
     | Some n ->
-        let node_list = MyGQLdomain.match_node myGraph labels props in
+        let node_list = MyGQLdomain.match_node myGraph labels in
         extend rho n node_list)
   | ERel _ -> raise(Failure "A FINIR")
   | _ -> raise(Failure "Command MATCH should take entity value : node or relationship")
 ;;
 
-let eval_create entity rho = match entity with
-  | ENode(name, label_list, properties) -> 
-      let n = match name with
-        | None -> raise(Failure "A FINIR")
-        | Some sname -> sname in
-      let val_properties = List.map (fun p -> match p with 
+let eval_create entity rho = 
+  let translate_props properties = List.map (fun p -> match p with 
         |k, EInt(n) -> k, Intval(n)
         |k, EString(s) -> k, Stringval(s)
         |k, EBool(b) -> k, Boolval(b)
         |k, EIdent(s) -> raise(Failure "A FINIR")
         |_ -> raise(Failure "Unnaccepted property type")
-      ) properties in
-      MyGQLdomain.create_node myGraph.graph_structure myGraph.node_table n label_list val_properties;
-      [Nodeval(n, label_list, val_properties)]
-  | ERel _ -> raise(Failure "A FINIR CREATE Relval")
-  | _ -> raise(Failure "Command CREATE should take entity value : node or relationship")
+  ) properties in match entity with
+    | ENode(name, label_list, properties) -> 
+        let n = match name with
+          | None -> raise(Failure "A FINIR")
+          | Some sname -> sname in
+        let val_properties = translate_props properties in
+        MyGQLdomain.create_node myGraph.graph_structure myGraph.node_table n label_list val_properties;
+        []
+    | ERel ( None, rtype, props, node1, node2 ) -> 
+      let n1, n2 = (match node1, node2 with
+        | ENode(Some n1, _, _),  ENode(Some n2, _, _) -> n1, n2
+        | _ -> raise(Failure "CREATE relationship needs named nodes")
+    ) in let rel_type = (match rtype with
+        | Some srtype -> srtype
+        | None -> raise(Failure "CREATE relationship needs a type")
+    ) in
+    let val_properties = translate_props props in
+      MyGQLdomain.create_edge myGraph.graph_structure myGraph.edge_table n1 n2 rel_type val_properties;
+      []
+    | _ -> raise(Failure "Command CREATE should take entity value : node or relationship")
 ;;
 
 let eval_expr expr rho = match expr with 
@@ -55,12 +66,6 @@ let eval_expr expr rho = match expr with
   | EIdent s -> lookup s rho
   | _ -> raise(Failure "Expr non supportée")
 ;;
-
-(* let rec eval_command command rho = match command with
-  | ECommand("MATCH", entity) -> match_eval entity rho
-  | ECommand("CREATE", entity) -> create_eval entity rho
-  | _ -> raise(Failure "A FINIR")
-;; *)
 
 let rec eval instr rho = match instr with
   | [] -> []

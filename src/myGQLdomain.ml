@@ -50,7 +50,7 @@ let get_node_list full_graph = G.fold_vertex
 
 let get_edge_list graph = [];;
 
-let match_node full_graph match_labels match_props = G.fold_vertex 
+let match_node full_graph match_labels = G.fold_vertex 
   (fun v l -> 
     let info_table = Hashtbl.find full_graph.node_table v in
     let vlabels = info_table.label_list
