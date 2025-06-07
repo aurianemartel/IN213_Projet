@@ -39,16 +39,29 @@ let create_edge graph edge_table node1 node2 relationship_type propetries =
 
 (* val fold_vertex : (vertex -> 'a -> 'a) -> t -> 'a -> 'a *)
 
+let make_nodeval full_graph v = 
+  let info_table = Hashtbl.find full_graph.node_table v in
+  let labels = info_table.label_list
+  and properties = info_table.prop_list in 
+  MyGQLval.Nodeval(v, labels, properties)
+;;
+
 let get_node_list full_graph = G.fold_vertex 
   (fun v l -> 
-    let info_table = Hashtbl.find full_graph.node_table v in
-    let labels = info_table.label_list
-    and properties = info_table.prop_list in 
-    MyGQLval.Nodeval(v, labels, properties)::l
-  ) 
+    let nodeval = make_nodeval full_graph v in
+    nodeval::l)
   full_graph.graph_structure [];;
 
-let get_edge_list graph = [];;
+let get_edge_list full_graph = G.fold_edges 
+  (fun v1 v2 l -> 
+    let info_table = Hashtbl.find full_graph.edge_table (v1,v2) in
+    let rtype = info_table.rel_type
+    and properties = info_table.prop_list in 
+    let nodeval1 = make_nodeval full_graph v1
+    and nodeval2 = make_nodeval full_graph v2 in
+    MyGQLval.Relval(rtype, properties, nodeval1, nodeval2)::l
+  )
+  full_graph.graph_structure [];;;;
 
 let match_node full_graph match_labels = G.fold_vertex 
   (fun v l -> 

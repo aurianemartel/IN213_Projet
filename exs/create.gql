@@ -9,7 +9,7 @@ CREATE ({name:"Danny", annee_naissance:1990});
 
 CREATE (Alice)-[:FRIEND]->(Bob);
 
-CREATE (Alice)-[:EMPLOYED_BY {company:"NVIDIA", since: 2020}]->(Charlie)
+CREATE (Alice)-[:EMPLOYED_BY {company:"NVIDIA", since: 2020}]->(Charlie);
 
 
 DUMP;
