@@ -49,3 +49,20 @@ let get_node_list full_graph = G.fold_vertex
   full_graph.graph_structure [];;
 
 let get_edge_list graph = [];;
+
+let match_node full_graph match_labels match_props = G.fold_vertex 
+  (fun v l -> 
+    let info_table = Hashtbl.find full_graph.node_table v in
+    let vlabels = info_table.label_list
+    and vproperties = info_table.prop_list in 
+    let rec matching liste = (match liste with 
+      | [] -> true
+      | label::reste -> 
+        if (List.mem label vlabels) 
+        then matching reste
+        else false
+    ) in if (matching match_labels)
+      then MyGQLval.Nodeval(v, vlabels, vproperties)::l
+      else l
+  ) 
+  full_graph.graph_structure [];;

@@ -11,12 +11,15 @@
     - myGQLast.ml
     - myGQLsem.ml
     - myGQLdomain.ml
+    - myGQLval.ml
 
 
 Prochaine étape : 
-- CREATE : connecter sem et domain, node
-- commande DUMP graphe
-- CREATE edge (connecter sem et domain)
-- MATCH : pour un noeud
-- tester RETURN
-- MATCH : avec une relation
+- CREATE : connecter sem et domain, node    [x]
+- RETURN valeur                             [x]
+- DUMP : noeuds                             [x]
+- MATCH : pour un noeud                     []
+- tester RETURN noeud                       []
+- CREATE edge (connecter sem et domain)     []
+- DUMP edge                                 []
+- MATCH : avec une relation                 []

@@ -7,11 +7,11 @@ type myGQLval =
 ;;
 
 let printval = function 
-  | Intval n -> Printf.printf "%d" n
-  | Boolval b -> Printf.printf "%s" (if b then "true" else "false")
-  | Stringval s -> Printf.printf "%S" s
+  | Intval n -> Printf.printf "%d " n
+  | Boolval b -> Printf.printf "%s " (if b then "true" else "false")
+  | Stringval s -> Printf.printf "%s " s
   | Nodeval(name, label_list, properties) -> 
-      Printf.printf "Noeud (%s%a {%a})"
+      Printf.printf "Noeud (%s%a {%a}) "
       name
       (fun oc -> List.iter (fun s -> Printf.printf ":%s" s)) label_list
       (fun oc -> List.iter (fun s -> match s with

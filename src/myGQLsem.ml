@@ -20,8 +20,12 @@ let eval_dump () =
   ln@lr
 ;;
 
-let match_eval entity rho = match entity with
-  | ENode _ -> raise(Failure "A FINIR")
+let eval_match entity rho = match entity with
+  | ENode( name, labels, props ) -> (match name with
+    | None -> rho
+    | Some n ->
+        let node_list = MyGQLdomain.match_node myGraph labels props in
+        extend rho n node_list)
   | ERel _ -> raise(Failure "A FINIR")
   | _ -> raise(Failure "Command MATCH should take entity value : node or relationship")
 ;;
@@ -63,6 +67,8 @@ let rec eval instr rho = match instr with
   | [ECommand("DUMP", EUnit)] -> eval_dump ()
   | [ECommand("RETURN", variable)] -> eval_expr variable rho
   | [ECommand("CREATE", entity)] -> eval_create entity rho
+  | ECommand("MATCH", entity)::reste -> 
+      let newrho = eval_match entity rho in eval reste newrho
   | commande::reste -> eval reste rho
 ;;
 

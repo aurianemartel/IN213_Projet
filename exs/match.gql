@@ -1,6 +1,27 @@
-MATCH (n:PERSON)-[:IS_FRIEND_WITH]->(:PERSON {nom:"Alice"});
+CREATE (Alice);
+
+CREATE (Bob:PERSONNE:GEEK);
+
+CREATE (Charlie {nom:"Charlie", annee_naissance:2000});
+
+CREATE (Garfield:GEEK);
+
+CREATE (Danny:PERSONNE);
+
+
+MATCH (n)
 RETURN n;
 
+MATCH (n:PERSONNE)
+RETURN n;
 
+MATCH (n:GEEK)
+RETURN n;
+
+MATCH (n:PERSONNE:GEEK)
+RETURN n;
+
+/*
 MATCH (n:PERSON)-[:IS_FRIEND_WITH]->(:PERSON {nom:"Alice"})
 RETURN n;
+*/
