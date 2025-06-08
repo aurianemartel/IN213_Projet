@@ -32,8 +32,6 @@ let rec eval_match entity rho = match entity with
     | Some n -> 
       try if MyGQLdomain.node_mem myGraph n labels
           then rho
-        else if List.mem_assoc n rho
-          then rho (* TODO : Checker si labels et props ok, sinon exception *)
         else let node_list = MyGQLdomain.match_node myGraph labels in
         extend rho n node_list
       with MyGQLdomain.Impossible_node -> extend rho n [])
