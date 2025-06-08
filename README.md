@@ -4,9 +4,11 @@
 
 Ce langage a pour but de manipuler des bases de données sous formes de graphes, et d'effectuer des requêtes sur ces bases de données. Il est inspiré du langage OpenCypher, dont j'ai implémenté quelques fonctionnalités de base dans un interpréteur. Le graphe est géré dans la mémoire de travail de l'interpréteur.
 
-Du côté DML - data manipulation - le mot clé CREATE permet d'ajouter des noeuds et relations entre ces noeuds au graphe.
+Le langage est composé d'instructions, qui sont des suites de commandes terminées par un point-virgule.
 
-Du côté DQL - data query - le mot clé MATCH permet de filtrer les noeuds ou relations pour obtenir ceux qui correspondent à des propriétés spécifiques, qui seront ensuite renvoyés grâce au mot-clé RETURN. On peut aussi afficher l'ensemble du graphe grâce au mot-clé DUMP.
+Du côté DML - data manipulation - le mot clé CREATE permet d'ajouter des noeuds et relations entre ces noeuds au graphe. On peut enchaîner plusieurs commandes CREATE dans une même instruction.
+
+Du côté DQL - data query - le mot clé MATCH permet de filtrer les noeuds ou relations pour obtenir ceux qui correspondent à des propriétés spécifiques, qui seront ensuite renvoyés grâce au mot-clé RETURN. On peut aussi afficher l'ensemble du graphe grâce au mot-clé DUMP. Les commandes DUMP et RETURN doivent être la dernière commande de l'instruction.
 
 Des fichiers exemples sont présents dans le répertoire exs, et peuvent être exécutés depuis le répertoire src avec la commande :
 ```

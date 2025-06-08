@@ -1,17 +1,11 @@
-CREATE (Alice);
-
-CREATE (Bob:PERSONNE:GEEK);
-
-CREATE (Charlie {nom:"Charlie", annee_naissance:2000});
-
-CREATE (Garfield:GEEK);
-
+CREATE (Alice)
+CREATE (Bob:PERSONNE:GEEK)
+CREATE (Charlie {nom:"Charlie", annee_naissance:2000})
+CREATE (Garfield:GEEK)
 CREATE (Danny:PERSONNE);
 
-CREATE (Alice)-[:FRIEND]->(Bob);
-
-CREATE (Alice)-[:FRIEND]->(Danny);
-
+CREATE (Alice)-[:FRIEND]->(Bob)
+CREATE (Alice)-[:FRIEND]->(Danny)
 CREATE (Alice)-[:HATES]->(Garfield);
 
 

@@ -65,16 +65,14 @@ let eval_create entity rho =
         |k, EInt(n) -> k, Intval(n)
         |k, EString(s) -> k, Stringval(s)
         |k, EBool(b) -> k, Boolval(b)
-        |k, EIdent(s) -> raise(Failure "A FINIR")
         |_ -> raise(Failure "Unnaccepted property type")
   ) properties in match entity with
     | ENode(name, label_list, properties) -> 
         let n = match name with
-          | None -> raise(Failure "A FINIR")
+          | None -> raise(Failure "CREATE node needs a name")
           | Some sname -> sname in
         let val_properties = translate_props properties in
-        MyGQLdomain.create_node myGraph.graph_structure myGraph.node_table n label_list val_properties;
-        []
+        MyGQLdomain.create_node myGraph.graph_structure myGraph.node_table n label_list val_properties
     | ERel ( None, rtype, props, node1, node2 ) -> 
       let n1, n2 = (match node1, node2 with
         | ENode(Some n1, _, _),  ENode(Some n2, _, _) -> n1, n2
@@ -84,8 +82,7 @@ let eval_create entity rho =
         | None -> raise(Failure "CREATE relationship needs a type")
     ) in
     let val_properties = translate_props props in
-      MyGQLdomain.create_edge myGraph.graph_structure myGraph.edge_table n1 n2 rel_type val_properties;
-      []
+      MyGQLdomain.create_edge myGraph.graph_structure myGraph.edge_table n1 n2 rel_type val_properties
     | _ -> raise(Failure "Command CREATE should take entity value : node or relationship")
 ;;
 
@@ -101,10 +98,10 @@ let rec eval instr rho = match instr with
   | [] -> []
   | [ECommand("DUMP", EUnit)] -> eval_dump ()
   | [ECommand("RETURN", variable)] -> eval_expr variable rho
-  | [ECommand("CREATE", entity)] -> eval_create entity rho
+  | ECommand("CREATE", entity)::reste -> eval_create entity rho; eval reste rho
   | ECommand("MATCH", entity)::reste -> 
       let newrho = eval_match entity rho in eval reste newrho
-  | commande::reste -> eval reste rho
+  | _ -> raise(Failure "Commande inconnue")
 ;;
 
 let eval_init i = eval i init_env;;
