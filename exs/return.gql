@@ -3,3 +3,7 @@ RETURN 1;
 RETURN "Hello world !";
 
 RETURN true;
+
+CREATE (Alice);
+
+RETURN Alice;

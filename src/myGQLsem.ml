@@ -9,10 +9,7 @@ let error msg = raise(Failure msg) ;;
 
 let extend rho x v = (x, v) :: rho ;;
 
-let lookup var_name rho =
-  try List.assoc var_name rho
-  with Not_found -> error (Printf.sprintf "Undefined ident '%s'" var_name)
-;;
+let lookup var_name rho = List.assoc var_name rho;;
 
 let eval_dump () = 
   let ln = MyGQLdomain.get_node_list myGraph in
@@ -20,32 +17,35 @@ let eval_dump () =
   ln@lr
 ;;
 
-let get_node_from_ident n rho = 
-  if MyGQLdomain.node_mem myGraph n 
-    then let node = MyGQLdomain.make_nodeval myGraph n in
-    [node]
-  else lookup n rho
+let get_node_from_ident n rho labels = 
+  try lookup n rho 
+  with Not_found -> try if MyGQLdomain.node_mem myGraph n labels
+      then let node = MyGQLdomain.make_nodeval myGraph n in
+      [node]
+    else raise(Failure "Unidentified ident")
+  with MyGQLdomain.Impossible_node -> []
 ;;
 
 let rec eval_match entity rho = match entity with
   | ENode( name, labels, _ ) -> (match name with
     | None -> rho
-    | Some n ->
-        if MyGQLdomain.node_mem myGraph n
-          then rho (* TODO : Checker si labels et props ok, sinon exception *)
+    | Some n -> 
+      try if MyGQLdomain.node_mem myGraph n labels
+          then rho
         else if List.mem_assoc n rho
           then rho (* TODO : Checker si labels et props ok, sinon exception *)
         else let node_list = MyGQLdomain.match_node myGraph labels in
-        extend rho n node_list)
+        extend rho n node_list
+      with MyGQLdomain.Impossible_node -> extend rho n [])
   | ERel ( name, rtype, _, node1, node2 ) -> 
       let rho1 = eval_match node1 rho in
       let rho2 = eval_match node2 rho1 in
       let node_list1 = (match node1 with
-        | ENode(Some n1,_,_) -> get_node_from_ident n1 rho2 (*Pb : global et labels*)
+        | ENode(Some n1, labels,_) -> get_node_from_ident n1 rho2 labels
         | ENode(None, labels, _) -> MyGQLdomain.match_node myGraph labels
         | _ -> raise(Failure "Relationship is between nodes")) 
       and node_list2 = (match node2 with
-        | ENode(Some n2,_,_) -> get_node_from_ident n2 rho2 (*Pb : global et labels*)
+        | ENode(Some n2, labels,_) -> get_node_from_ident n2 rho2 labels
         | ENode(None, labels, _) -> MyGQLdomain.match_node myGraph labels
         | _ -> raise(Failure "Relationship is between nodes")) in 
       let edge_list, new_nl1, new_nl2 = MyGQLdomain.match_edge myGraph node_list1 node_list2 rtype in
@@ -95,7 +95,7 @@ let eval_expr expr rho = match expr with
   | EInt n -> [Intval n]
   | EString s -> [Stringval s]
   | EBool b -> [Boolval b]
-  | EIdent s -> get_node_from_ident s rho
+  | EIdent s -> get_node_from_ident s rho []
   | _ -> raise(Failure "Expr non supportée")
 ;;
 

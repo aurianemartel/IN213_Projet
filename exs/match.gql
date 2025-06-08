@@ -30,6 +30,9 @@ RETURN n;
 MATCH (n:PERSONNE:GEEK)
 RETURN n;
 
+MATCH (Alice:GEEK)
+RETURN Alice;
+
 // Toutes les relations
 MATCH ()-[n]->()
 RETURN n;
@@ -44,4 +47,8 @@ RETURN n;
 
 // Qui n'aime pas Garfield : Alice
 MATCH (n)-[:HATES]->(Garfield)
+RETURN n;
+
+// Noeud incompatible avec ses labels
+MATCH (Alice:GEEK)-[n]->()
 RETURN n;

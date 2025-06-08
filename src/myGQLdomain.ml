@@ -70,9 +70,22 @@ let get_edge_list full_graph = G.fold_edges
     and nodeval2 = make_nodeval full_graph v2 in
     MyGQLval.Relval(rtype, properties, nodeval1, nodeval2)::l
   )
-  full_graph.graph_structure [];;;;
+  full_graph.graph_structure [];;
 
-let node_mem full_graph node = G.mem_vertex full_graph.graph_structure node;;
+exception Impossible_node;;
+
+let node_mem full_graph node match_labels = 
+  if G.mem_vertex full_graph.graph_structure node
+    then let info_table = Hashtbl.find full_graph.node_table node in
+    let node_labels = info_table.label_list in
+    let rec matching liste = (match liste with 
+      | [] -> true
+      | label::reste -> 
+        if (List.mem label node_labels) 
+        then matching reste
+        else raise Impossible_node
+    ) in matching match_labels
+  else false;;
 
 let match_node full_graph match_labels = G.fold_vertex 
   (fun v l -> 
