@@ -21,7 +21,7 @@ let rec printval = function
         |_  -> raise(Failure "Bad property type"))) properties
   | Relval (rtype, properties, node1, node2) ->
       printval node1; 
-      Printf.printf "-[%s {%a}]-> "
+      Printf.printf "-[:%s {%a}]-> "
         rtype
         (fun oc -> List.iter (fun s -> match s with
         |k, Intval v -> Printf.fprintf oc " %s:%d " k v

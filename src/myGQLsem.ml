@@ -20,13 +20,45 @@ let eval_dump () =
   ln@lr
 ;;
 
-let eval_match entity rho = match entity with
+let get_node_from_ident n rho = 
+  if MyGQLdomain.node_mem myGraph n 
+    then let node = MyGQLdomain.make_nodeval myGraph n in
+    [node]
+  else lookup n rho
+;;
+
+let rec eval_match entity rho = match entity with
   | ENode( name, labels, _ ) -> (match name with
     | None -> rho
     | Some n ->
-        let node_list = MyGQLdomain.match_node myGraph labels in
+        if MyGQLdomain.node_mem myGraph n
+          then rho (* TODO : Checker si labels et props ok, sinon exception *)
+        else if List.mem_assoc n rho
+          then rho (* TODO : Checker si labels et props ok, sinon exception *)
+        else let node_list = MyGQLdomain.match_node myGraph labels in
         extend rho n node_list)
-  | ERel _ -> raise(Failure "A FINIR")
+  | ERel ( name, rtype, _, node1, node2 ) -> 
+      let rho1 = eval_match node1 rho in
+      let rho2 = eval_match node2 rho1 in
+      let node_list1 = (match node1 with
+        | ENode(Some n1,_,_) -> get_node_from_ident n1 rho2 (*Pb : global et labels*)
+        | ENode(None, labels, _) -> MyGQLdomain.match_node myGraph labels
+        | _ -> raise(Failure "Relationship is between nodes")) 
+      and node_list2 = (match node2 with
+        | ENode(Some n2,_,_) -> get_node_from_ident n2 rho2 (*Pb : global et labels*)
+        | ENode(None, labels, _) -> MyGQLdomain.match_node myGraph labels
+        | _ -> raise(Failure "Relationship is between nodes")) in 
+      let edge_list, new_nl1, new_nl2 = MyGQLdomain.match_edge myGraph node_list1 node_list2 rtype in
+      let rho3 = (match node1 with
+        | ENode(Some n1,_,_) -> extend rho n1 new_nl1
+        | _ -> rho) in
+      let rho4 = (match node2 with
+        | ENode(Some n2,_,_) -> extend rho3 n2 new_nl2
+        | _ -> rho3) in
+      let rho5 = (match name with
+        | Some rn -> extend rho4 rn edge_list
+        | None -> rho4) in 
+      rho5
   | _ -> raise(Failure "Command MATCH should take entity value : node or relationship")
 ;;
 
@@ -63,7 +95,7 @@ let eval_expr expr rho = match expr with
   | EInt n -> [Intval n]
   | EString s -> [Stringval s]
   | EBool b -> [Boolval b]
-  | EIdent s -> lookup s rho
+  | EIdent s -> get_node_from_ident s rho
   | _ -> raise(Failure "Expr non supportée")
 ;;
 

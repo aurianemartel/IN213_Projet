@@ -46,6 +46,15 @@ let make_nodeval full_graph v =
   MyGQLval.Nodeval(v, labels, properties)
 ;;
 
+let make_relval full_graph v1 v2 = 
+  let info_table = Hashtbl.find full_graph.edge_table (v1,v2) in
+  let rtype = info_table.rel_type
+  and properties = info_table.prop_list in 
+  let node1 = make_nodeval full_graph v1
+  and node2 = make_nodeval full_graph v2 in
+  MyGQLval.Relval(rtype, properties, node1, node2)
+;;
+
 let get_node_list full_graph = G.fold_vertex 
   (fun v l -> 
     let nodeval = make_nodeval full_graph v in
@@ -63,6 +72,8 @@ let get_edge_list full_graph = G.fold_edges
   )
   full_graph.graph_structure [];;;;
 
+let node_mem full_graph node = G.mem_vertex full_graph.graph_structure node;;
+
 let match_node full_graph match_labels = G.fold_vertex 
   (fun v l -> 
     let info_table = Hashtbl.find full_graph.node_table v in
@@ -79,3 +90,28 @@ let match_node full_graph match_labels = G.fold_vertex
       else l
   ) 
   full_graph.graph_structure [];;
+
+let match_edge full_graph node_list1 node_list2 rtype = 
+  let edge_list = G.fold_edges (fun v1 v2 l -> 
+    let info_table = Hashtbl.find full_graph.edge_table (v1,v2) in
+    if (match rtype with 
+      | Some rt -> 
+          (* Printf.printf ">>> %s ?= %s\n" rt info_table.rel_type;  *)
+          not (String.equal rt info_table.rel_type)
+      | None -> false) then l
+    else if (List.exists
+    (fun node -> match node with
+      | MyGQLval.Nodeval(name, _, _) -> (name = v1)
+      | _ -> false)
+    node_list1) && (List.exists 
+    (fun node -> match node with
+      | MyGQLval.Nodeval(name, _, _) -> (name = v2)
+      | _ -> false)
+    node_list2) then let relval = make_relval full_graph v1 v2 in relval::l
+    else l) full_graph.graph_structure [] in
+  let rec gnls el nl1 nl2 = match el with
+    | [] -> nl1, nl2
+    | MyGQLval.Relval(_, _, node1, node2)::reste -> gnls reste (node1::nl1) (node2::nl2)
+    | _ -> raise(Failure "Wrong types for relationship")
+  in let nl1, nl2 = gnls edge_list [] [] in
+  edge_list, nl1, nl2;;

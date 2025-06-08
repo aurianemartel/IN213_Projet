@@ -21,5 +21,5 @@ Prochaine étape :
 - MATCH : pour un noeud                     [x]
 - tester RETURN noeud                       [x]
 - CREATE edge (connecter sem et domain)     [x]
-- DUMP edge                                 []
+- DUMP edge                                 [x]
 - MATCH : avec une relation                 []

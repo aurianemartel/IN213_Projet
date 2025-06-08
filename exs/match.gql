@@ -8,6 +8,15 @@ CREATE (Garfield:GEEK);
 
 CREATE (Danny:PERSONNE);
 
+CREATE (Alice)-[:FRIEND]->(Bob);
+
+CREATE (Alice)-[:FRIEND]->(Danny);
+
+CREATE (Alice)-[:HATES]->(Garfield);
+
+
+DUMP;
+
 
 MATCH (n)
 RETURN n;
@@ -21,7 +30,18 @@ RETURN n;
 MATCH (n:PERSONNE:GEEK)
 RETURN n;
 
-/*
-MATCH (n:PERSON)-[:IS_FRIEND_WITH]->(:PERSON {nom:"Alice"})
+// Toutes les relations
+MATCH ()-[n]->()
 RETURN n;
-*/
+
+// Personnes amies avec Alice : Bob et Danny
+MATCH (Alice)-[:FRIEND]->(n:PERSONNE)
+RETURN n;
+
+// Relation entre Alice et Bob et Alice et Garfield
+MATCH (Alice)-[n]->(:GEEK)
+RETURN n;
+
+// Qui n'aime pas Garfield : Alice
+MATCH (n)-[:HATES]->(Garfield)
+RETURN n;

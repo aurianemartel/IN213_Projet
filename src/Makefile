@@ -55,3 +55,5 @@ exs: $(EXEC)
 		(./myGQLloop < $$f); \
 	done;
 
+exs_match: $(EXEC)
+	./myGQLloop < ../exs/match.gql
