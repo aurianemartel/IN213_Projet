@@ -6,11 +6,11 @@ type expr =
   | EIdent of string
   | ENode of ((string option) * (string list) * ((string * expr) list))
   | ERel of ((string option) * (string option) * ((string * expr) list) * expr * expr)
-  
+;;
 
-type command = 
-  | ECommand of (string * expr)
+type command = ECommand of (string * expr);;
 
+type instr = command list;;
 
 let rec  print_expr oc = function
   | EUnit -> ()
